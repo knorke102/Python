@@ -1,7 +1,7 @@
 Python Scripts
 ==================
-| Script                                               | Description                                                        |
-| ---------------------------------------------------- | ------------------------------------------------------------------ |
-| [request_xpath](Scripts/network.ps1)                 | Автоматизированная настройка сети локального компьютера            |
-| [response_xpath](Scripts/ad-users.ps1)               | Автоматизированный создание пользователей в Active Directory       |
-| [click_xpath](Scripts/client-ad.ps1)                 | Автоматизированный ввод пользователя в Active Directory            |
+| Script                                               | Description                           |
+| ---------------------------------------------------- | --------------------------------------|
+| [request_xpath.py](Scripts/request_xpath.py)         | переход на элемент и сбор данных      |
+| [response_xpath](Scripts/response_xpath.py)          | переход на элемент и ввод данных      |
+| [click_xpath](Scripts/click_xpath.py)                | переход на элемент и нажатие          |
