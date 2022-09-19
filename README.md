@@ -1,5 +1,3 @@
-Python
-==================
 Parsing
 ==================
 | Selenium                                             | Description                           |
