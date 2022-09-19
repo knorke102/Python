@@ -2,7 +2,7 @@ Python
 ==================
 Parsing
 ==================
-| Scripts                                              | Description                           |
+| Selenium                                             | Description                           |
 | ---------------------------------------------------- | --------------------------------------|
 | [request_xpath.py](parsing/request_xpath.py)         | переход на элемент и сбор данных      |
 | [response_xpath.py](parsing/response_xpath.py)       | переход на элемент и ввод данных      |
