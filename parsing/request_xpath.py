@@ -30,8 +30,9 @@ def request_xpath(xpath, header_module,  # переход на элемент и
     driver.implicitly_wait(module_time)  # ожидание элемента
     search = driver.find_element(By.XPATH, xpath)  # поиск элемента, по методу XPATH
     search.click()  # нажатие
-    time.sleep(screenshot_time)  # таймаут
+    time.sleep(screenshot_time)  # таймаут 1 секунда
     driver.save_screenshot(title_element + '.png')  # скриншот
     search = driver.page_source  # сбор данных
-    with open(title_element + '.txt', "w", encoding="utf-8") as f:  # создание файла, для хранения собранных данных
-        f.write(search)  # запись данных
+    with open(title_element + '.txt', 'w', encoding="utf-8") as f:  # создание файла, для хранения собранных данных
+        soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
+        f.write(soup.get_text(' ', strip=True))  # извлечение и запись текста
