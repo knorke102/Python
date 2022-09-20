@@ -1,6 +1,6 @@
 def response_xpath(xpath, header_module,  # переход на элемент и ввод данных
                    header_module_element,  # пример ("//*[@class='navigation-panel']//*[@class='ng-star-inserted'][1]",
-                   title_window):  # 'main_module', 'organization', '123123')
+                   title_window):  # 'main_module', 'organization', 'ввод текста')
 
     """project_folder"""
     product_path = os.path.join(main_path, product_name)
