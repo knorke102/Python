@@ -7,15 +7,15 @@ from bs4 import BeautifulSoup
 
 ################# вводим данные ########################################################################################
 """link"""
-main_link = 'https://protelion.local/'  # доменное имя
+main_link = 'https://google.com/'  # доменное имя
 
 """authorization"""
 main_login = 'admin'  # логин
-main_password = '123123123'  # пароль
+main_password = '123'  # пароль
 
 """main_folder"""
 main_path = 'C:\Parsing'  # папка с проектом
-product_name = 'prime'  # название продукта
+product_name = 'google'  # название продукта
 
 """main_time"""
 module_time = 20  # максимальное время на появление элемента
