@@ -35,4 +35,4 @@ def request_xpath(xpath, header_module,  # переход на элемент и
     search = driver.page_source  # сбор данных
     with open(title_element + '.txt', 'w', encoding="utf-8") as f:  # создание файла, для хранения собранных данных
         soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
-        f.write(soup.get_text(' ', strip=True))  # извлечение и запись текста
+        f.write(soup.get_text('\n', strip=True))  # извлечение и запись текста
