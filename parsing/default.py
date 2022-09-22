@@ -16,6 +16,9 @@ main_password = 'GH1-15J-fgU-1MP'  # пароль
 """Project folder"""
 main_path = 'C:\Parsing'  # папка с проектом
 product_name = 'prime'  # название продукта
+product_path = os.path.join(main_path, product_name)  # папка с проектом
+if not os.path.exists(product_path):  # проверка (создана папка или нет)
+    os.mkdir(product_path)  # создание папки с названием продукта
 
 """Artifact file"""
 artifact_name = 'artifact.txt'   # файл с артефактами
@@ -25,15 +28,11 @@ artifact_path = os.path.join(main_path, artifact_name)   # путь хранен
 module_time = 20  # максимальное время на появление элемента
 screenshot_time = 1  # время на создание скриншота
 
-########################################################################################################################
 """Driver"""
 driver = webdriver.Chrome(".\chromedriver.exe")  # инициализация веб-драйвера
 driver.maximize_window()  # работа браузера в максимальном окне
 
-"""Project folder"""
-product_path = os.path.join(main_path, product_name)  # папка с проектом
-if not os.path.exists(product_path):  # проверка (создана папка или нет)
-    os.mkdir(product_path)  # создание папки с названием продукта
+################# Функции ##############################################################################################
 
 
 def request_xpath(xpath, header_module,  # переход на элемент и сбор данных
@@ -103,9 +102,11 @@ def click_xpath(xpath):  # переход на элемент и нажатие
     search = driver.find_element(By.XPATH, xpath)
     search.click()  # нажатие
 
+########################################################################################################################
+
 
 try:
-    ################# browser ##########################################################################################
+    ################# Browser ##########################################################################################
     driver.implicitly_wait(module_time)
     driver.get(main_link)  # открытие ссылки бразуера
 
