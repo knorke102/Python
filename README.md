@@ -3,6 +3,6 @@ Parsing
 | Selenium                                             | Description                           |
 | ---------------------------------------------------- | --------------------------------------|
 | [default.py](parsing/default.py)                     | пример                                |
-| [request_xpath.py](parsing/request_xpath.py)         | переход на элемент и сбор данных      |
+| [request_xpath.py](parsing/request_xpath.py)         | переход на страницу и сбор данных     |
 | [response_xpath.py](parsing/response_xpath.py)       | переход на элемент и ввод данных      |
 | [click_xpath.py](parsing/click_xpath.py)             | переход на элемент и нажатие          |
