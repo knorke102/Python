@@ -8,7 +8,7 @@ def request_xpath(xpath, title_element):  # ("//*[@class='navigation-panel']", '
     driver.save_screenshot(title_element + '.png')  # скриншот
     search = driver.page_source  # сбор данных
     soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
-    get = [text for text in soup.stripped_strings]  # обработка текста
+    get = [str.lower(text) for text in soup.stripped_strings]  # преобразование текста в нижний регистр
     with open(artifact_path, "r") as file:  # открытие файла с артефактами
         for line in file:   # цикл текста с артефактами
             for el in get:  # цикл обработки текста
