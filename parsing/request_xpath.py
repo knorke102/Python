@@ -8,5 +8,5 @@ def request_xpath(xpath, title_element):  # ("//*[@class='navigation-panel']", '
     driver.save_screenshot(title_element + '.png')  # скриншот
     search = driver.page_source  # сбор данных
     with open(title_element + '.txt', 'a') as f:  # открытие файла
-      soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
-      f.write(soup.get_text('\n', strip=True))  # извлечение и запись текста
+        soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
+        f.write(soup.get_text('\n', strip=True))  # извлечение и запись текста
