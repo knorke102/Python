@@ -1,4 +1,4 @@
-"""libraries"""
+"""Libraries"""
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
@@ -6,32 +6,31 @@ import os
 from bs4 import BeautifulSoup
 
 ################# вводим данные ########################################################################################
-"""link"""
+"""Link"""
 main_link = 'https://smp.bestsafety.tech:1443/'  # доменное имя
 
-"""authorization"""
+"""Authorization"""
 main_login = 'admin'  # логин
 main_password = 'GH1-15J-fgU-1MP'  # пароль
 
-"""main_folder"""
+"""Project folder"""
 main_path = 'C:\Parsing'  # папка с проектом
 product_name = 'prime'  # название продукта
 
-"""artifact_file"""
+"""Artifact file"""
 artifact_name = 'artifact.txt'   # файл с артефактами
 artifact_path = os.path.join(main_path, artifact_name)   # путь хранения файла с артефактами
 
-"""main_time"""
+"""Time"""
 module_time = 20  # максимальное время на появление элемента
 screenshot_time = 1  # время на создание скриншота
 
 ########################################################################################################################
-
-"""driver"""
+"""Driver"""
 driver = webdriver.Chrome(".\chromedriver.exe")  # инициализация веб-драйвера
 driver.maximize_window()  # работа браузера в максимальном окне
 
-"""project_folder"""
+"""Project folder"""
 product_path = os.path.join(main_path, product_name)  # папка с проектом
 if not os.path.exists(product_path):  # проверка (создана папка или нет)
     os.mkdir(product_path)  # создание папки с названием продукта
@@ -41,13 +40,13 @@ def request_xpath(xpath, header_module,  # переход на элемент и
                   header_module_element,  # пример ("//*[@class='navigation-panel']//*[@class='ng-star-inserted'][1]",
                   title_element):  # 'main_module', 'organization', 'organization_add')
 
-    """module_folder"""
+    """Module folder"""
     module_name = header_module  # название модуля
     module_path = os.path.join(product_path, module_name)  # папка с модулем
     if not os.path.exists(module_path):
         os.mkdir(module_path)  # создание папки с названием модуля (в папке с названием продукта)
 
-    """element_folder"""
+    """Element folder"""
     element_name = header_module_element  # название элемента
     element_path = os.path.join(module_path, element_name)  # папка с элементом
     if not os.path.exists(element_path):
@@ -55,7 +54,7 @@ def request_xpath(xpath, header_module,  # переход на элемент и
 
     os.chdir(element_path)  # обращение к пути
 
-    """collection"""
+    """Collection"""
     driver.implicitly_wait(module_time)  # ожидание элемента
     search = driver.find_element(By.XPATH, xpath)  # поиск элемента, по методу XPATH
     search.click()  # нажатие
@@ -76,21 +75,21 @@ def response_xpath(xpath, header_module,  # переход на элемент �
                    header_module_element,  # пример ("//*[@class='navigation-panel']//*[@class='ng-star-inserted'][1]",
                    title_window):  # 'main_module', 'organization', 'ввод текста')
 
-    """module_folder"""
-    module_name = header_module  # название модуля
-    module_path = os.path.join(product_path, module_name)  # папка с модулем
+    """Module folder"""
+    module_name = header_module
+    module_path = os.path.join(product_path, module_name)
     if not os.path.exists(module_path):
-        os.mkdir(module_path)  # создание папки с названием модуля (в папке с названием продукта)
+        os.mkdir(module_path)
 
-    """element_folder"""
-    element_name = header_module_element  # название элемента
-    element_path = os.path.join(module_path, element_name)  # папка с элементом
+    """Element folder"""
+    element_name = header_module_element
+    element_path = os.path.join(module_path, element_name)
     if not os.path.exists(element_path):
-        os.mkdir(element_path)  # создание папки с названием элемента (в папке с названием модуля)
+        os.mkdir(element_path)
 
-    os.chdir(element_path)  # обращение к пути
+    os.chdir(element_path)
 
-    """response"""
+    """Response"""
     driver.implicitly_wait(module_time)
     search = driver.find_element(By.XPATH, xpath)
     search.clear()  # очистка строки
@@ -98,6 +97,8 @@ def response_xpath(xpath, header_module,  # переход на элемент �
 
 
 def click_xpath(xpath):  # переход на элемент и нажатие
+
+    """Click"""
     driver.implicitly_wait(module_time)
     search = driver.find_element(By.XPATH, xpath)
     search.click()  # нажатие
@@ -108,24 +109,24 @@ try:
     driver.implicitly_wait(module_time)
     driver.get(main_link)  # открытие ссылки бразуера
 
-    ################# authorization_window #############################################################################
-    """authorization_main"""
+    ################# Authorization Window #############################################################################
+    """Authorization Main"""
     request_xpath(
         "//*[@class='dropdown-toggle language-dropdown-toggle']",
-        'window_module', 'authorization_window', 'authorization_main'
+        'Window Module', 'Authorization Window', 'Authorization Main'
     )
 
-    """authorization_username"""
+    """Authorization Username"""
     response_xpath(
-        "//*[@id='UserName']", 'window_module', 'authorization_window', main_login
+        "//*[@id='UserName']", 'Window Module', 'Authorization Window', main_login
     )
 
-    """authorization_password"""
+    """Authorization Password"""
     response_xpath(
-        "//*[@id='Password']", 'window_module', 'authorization_window', main_password
+        "//*[@id='Password']", 'Window Module', 'Authorization Window', main_password
     )
 
-    """authorization_button"""
+    """Authorization Button"""
     click_xpath(
         "//*[@id='login-button']"
     )
