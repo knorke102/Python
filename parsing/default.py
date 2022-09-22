@@ -1,13 +1,14 @@
 """Libraries"""
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 import time
 import os
 from bs4 import BeautifulSoup
 
 ################# Ввод данных ##########################################################################################
 """Link"""
-main_link = 'https://smp.bestsafety.tech:1443/'  # доменное имя
+main_link = 'https://smp.bestsafety.tech:1443/'  # адрес
 
 """Authorization"""
 main_login = 'admin'  # логин
@@ -29,7 +30,10 @@ module_time = 20  # максимальное время на появление 
 screenshot_time = 1  # время на создание скриншота
 
 """Driver"""
-driver = webdriver.Chrome(".\chromedriver.exe")  # инициализация веб-драйвера
+driver_name = 'chromedriver.exe'  # драйвер
+driver_path = os.path.join(main_path, driver_name)
+driver_service = Service(driver_path)
+driver = webdriver.Chrome(service=driver_service)
 driver.maximize_window()  # работа браузера в максимальном окне
 
 ################# Функции ##############################################################################################
