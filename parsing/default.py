@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 ################# Ввод данных ##########################################################################################
 """Link"""
-main_link = 'https://google.com/'  # адрес
+main_link = 'https://protelion.local/'  # адрес
 
 """Authorization"""
 main_login = 'admin'  # логин
