@@ -25,39 +25,34 @@ artifact_path = os.path.join(main_path, artifact_name)   # путь хранен
 module_time = 20  # максимальное время на появление элемента
 screenshot_time = 1  # время на создание скриншота
 
+########################################################################################################################
+
 """driver"""
 driver = webdriver.Chrome(".\chromedriver.exe")  # инициализация веб-драйвера
 driver.maximize_window()  # работа браузера в максимальном окне
 
-########################################################################################################################
+"""project_folder"""
+product_path = os.path.join(main_path, product_name)  # папка с проектом
+if not os.path.exists(product_path):  # проверка (создана папка или нет)
+    os.mkdir(product_path)  # создание папки с названием продукта
 
 
 def request_xpath(xpath, header_module,  # переход на элемент и сбор данных
                   header_module_element,  # пример ("//*[@class='navigation-panel']//*[@class='ng-star-inserted'][1]",
                   title_element):  # 'main_module', 'organization', 'organization_add')
 
-    """project_folder"""
-    product_path = os.path.join(main_path, product_name)  # папка с проектом
-    if os.path.exists(product_path):  # проверка (создана папка или нет)
-        pass  # 0 значение
-    else:
-        os.mkdir(product_path)  # создание папки с названием продукта
-
     """module_folder"""
     module_name = header_module  # название модуля
     module_path = os.path.join(product_path, module_name)  # папка с модулем
-    if os.path.exists(module_path):
-        pass
-    else:
+    if not os.path.exists(module_path):
         os.mkdir(module_path)  # создание папки с названием модуля (в папке с названием продукта)
 
     """element_folder"""
     element_name = header_module_element  # название элемента
     element_path = os.path.join(module_path, element_name)  # папка с элементом
-    if os.path.exists(element_path):
-        pass
-    else:
+    if not os.path.exists(element_path):
         os.mkdir(element_path)  # создание папки с названием элемента (в папке с названием модуля)
+
     os.chdir(element_path)  # обращение к пути
 
     """collection"""
@@ -81,29 +76,19 @@ def response_xpath(xpath, header_module,  # переход на элемент �
                    header_module_element,  # пример ("//*[@class='navigation-panel']//*[@class='ng-star-inserted'][1]",
                    title_window):  # 'main_module', 'organization', 'ввод текста')
 
-    """project_folder"""
-    product_path = os.path.join(main_path, product_name)
-    if os.path.exists(product_path):
-        pass
-    else:
-        os.mkdir(product_path)
-
     """module_folder"""
-    module_name = header_module
-    module_path = os.path.join(product_path, module_name)
-    if os.path.exists(module_path):
-        pass
-    else:
-        os.mkdir(module_path)
+    module_name = header_module  # название модуля
+    module_path = os.path.join(product_path, module_name)  # папка с модулем
+    if not os.path.exists(module_path):
+        os.mkdir(module_path)  # создание папки с названием модуля (в папке с названием продукта)
 
     """element_folder"""
-    element_name = header_module_element
-    element_path = os.path.join(module_path, element_name)
-    if os.path.exists(element_path):
-        pass
-    else:
-        os.mkdir(element_path)
-    os.chdir(element_path)
+    element_name = header_module_element  # название элемента
+    element_path = os.path.join(module_path, element_name)  # папка с элементом
+    if not os.path.exists(element_path):
+        os.mkdir(element_path)  # создание папки с названием элемента (в папке с названием модуля)
+
+    os.chdir(element_path)  # обращение к пути
 
     """response"""
     driver.implicitly_wait(module_time)
