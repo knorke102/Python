@@ -66,7 +66,6 @@ def request_xpath(xpath, header_module,  # переход на элемент и
     search = driver.page_source  # сбор данных
     soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
     get = [str.lower(text) for text in soup.stripped_strings]  # преобразование текста в нижний регистр
-    print(get)
     with open(artifact_path, "r") as file:  # открытие файла с артефактами
         for line in file:   # цикл текста с артефактами
             for el in get:  # цикл обработки текста
