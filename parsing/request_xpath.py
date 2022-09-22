@@ -33,6 +33,11 @@ def request_xpath(xpath, header_module,  # переход на элемент и
     time.sleep(screenshot_time)  # таймаут 1 секунда
     driver.save_screenshot(title_element + '.png')  # скриншот
     search = driver.page_source  # сбор данных
-    with open(title_element + '.txt', 'w', encoding="utf-8") as f:  # создание файла, для хранения собранных данных
-        soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
-        f.write(soup.get_text('\n', strip=True))  # извлечение и запись текста
+    soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
+    get = [text for text in soup.stripped_strings]  # обработка текста
+    with open(artifact_path, "r") as file:  # открытие файла с артефактами
+        for line in file:   # цикл текста с артефактами
+            for el in get:  # цикл обработки текста
+                if line.strip() in el:  # поиск совпадений
+                    with open(title_element + '.txt', 'a') as f:  # открытие файла
+                        f.write(el + '\n')  # запись совпадений
