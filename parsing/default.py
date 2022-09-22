@@ -8,11 +8,11 @@ from bs4 import BeautifulSoup
 
 ################# Ввод данных ##########################################################################################
 """Link"""
-main_link = 'https://smp.bestsafety.tech:1443/'  # адрес
+main_link = 'https://google.com/'  # адрес
 
 """Authorization"""
 main_login = 'admin'  # логин
-main_password = 'GH1-15J-fgU-1MP'  # пароль
+main_password = '123123123'  # пароль
 
 """Project folder"""
 main_path = 'C:\Parsing'  # папка с проектом
