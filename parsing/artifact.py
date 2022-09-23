@@ -14,4 +14,4 @@ def request_xpath(xpath, title_element):  # ("//*[@class='navigation-panel']", '
             for el in get:  # цикл обработки текста
                 if line.strip() in el:  # поиск совпадений
                     with open(title_element + '.txt', 'a') as f:  # открытие файла
-                        f.write(el + '\n')  # запись совпадений
+                        f.write(el + '\n')  # запись совпадений 
