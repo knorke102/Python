@@ -1,4 +1,7 @@
 """Libraries"""
+import re
+import string
+import xlsxwriter as xlsxwriter
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -8,7 +11,7 @@ from bs4 import BeautifulSoup
 
 ################# Ввод данных ##########################################################################################
 """Link"""
-main_link = 'https://google.com/'  # адрес
+main_link = 'https://protelion.mngmob/'  # адрес
 
 """Authorization"""
 main_login = 'admin'  # логин
@@ -16,7 +19,7 @@ main_password = '123123123'  # пароль
 
 """Project folder"""
 main_path = 'C:\Parsing'  # папка с проектом
-product_name = 'google'  # название продукта
+product_name = 'prime'  # название продукта
 product_path = os.path.join(main_path, product_name)  # папка с проектом
 if not os.path.exists(product_path):  # проверка (создана папка или нет)
     os.mkdir(product_path)  # создание папки с названием продукта
@@ -55,23 +58,62 @@ def request_xpath(xpath, header_module,  # переход на элемент и
     if not os.path.exists(element_path):
         os.mkdir(element_path)  # создание папки с названием элемента (в папке с названием модуля)
 
-    os.chdir(element_path)  # обращение к пути
-
     """Collection"""
+    os.chdir(main_path)
     driver.implicitly_wait(module_time)  # ожидание элемента
     search = driver.find_element(By.XPATH, xpath)  # поиск элемента, по методу XPATH
     search.click()  # нажатие
     time.sleep(screenshot_time)  # таймаут 1 секунда
+    os.chdir(element_path)
     driver.save_screenshot(title_element + '.png')  # скриншот
-    search = driver.page_source  # сбор данных
-    soup = BeautifulSoup(search, 'html.parser')  # обработка парсером
-    get = [str.lower(text) for text in soup.stripped_strings]  # преобразование текста в нижний регистр
-    with open(artifact_path, "r") as file:  # открытие файла с артефактами
-        for line in file:   # цикл текста с артефактами
-            for el in get:  # цикл обработки текста
-                if line.strip() == el:  # поиск совпадений
-                    with open(title_element + '.txt', 'a') as f:  # открытие файла
-                        f.write(el + '\n')  # запись совпадений
+    os.chdir(main_path)
+    search = driver.page_source
+    soup = BeautifulSoup(search, 'html.parser')
+    get = set([str.lower(text) for text in soup.stripped_strings])
+    with open('artifact.txt', encoding='utf-8', mode='r') as file:
+        os.chdir(element_path)
+        output = {}
+        for line in file:
+            for el in get:
+                if el == "":
+                    continue
+                line = line.strip()
+                for i in ['.', '+', '*', '?', '^', '$', '(', ')', '[', ']', '{', '}', '|']:
+                    line = line.replace(i, '\\{}'.format(i))
+                for i in list(string.punctuation):
+                    el = el.replace(i, '')
+                reg = re.compile(r"\s{2,}")
+                el = el.replace("\n", " ").replace("\t", " ")
+                el = re.sub(reg, " ", el)
+                el = el.lstrip()
+
+                if re.compile(r'\b{}\b'.format(line.lower())).search(el):
+                    value = output.get(el, None)
+                    if value is not None:
+                        output[el] += [line.strip()]
+                    else:
+                        output[el] = [line.strip()]
+
+        if len(output) == 0:
+            return
+
+        book = xlsxwriter.Workbook(title_element + '.xlsx')  # создание xlsx
+        sheet = book.add_worksheet()  # страница в xlsx
+        red = book.add_format({"bold": True, "color": "red"})  # окрашивание текста в красный цвет
+        r = 0
+        for key, value in output.items():
+            sheet.write_string(r, 0, ", ".join(set(value)))  # текст артефактов
+            array = []
+            for k in key.split(' '):
+                for v in value:
+                    if k == v:
+                        array += [red]
+                        break
+                array += [k, " "]
+            sheet.write_rich_string(r, 1, *array)  # найденные артефакты
+            sheet.write_string(r, 2, driver.current_url)  # ссылка на найденный элемент
+            r += 1
+        book.close()  # закрытие xlsx
 
 
 def response_xpath(xpath, header_module,  # переход на элемент и ввод данных
