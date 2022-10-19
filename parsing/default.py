@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 ################# Ввод данных ##########################################################################################
 """Link"""
-main_link = 'https://protelion.mngmob/'  # адрес
+main_link = 'https://google.com'  # адрес
 
 """Authorization"""
 main_login = 'admin'  # логин
@@ -19,7 +19,7 @@ main_password = '123123123'  # пароль
 
 """Project folder"""
 main_path = 'C:\Parsing'  # папка с проектом
-product_name = 'prime'  # название продукта
+product_name = 'google'  # название продукта
 product_path = os.path.join(main_path, product_name)  # папка с проектом
 if not os.path.exists(product_path):  # проверка (создана папка или нет)
     os.mkdir(product_path)  # создание папки с названием продукта
