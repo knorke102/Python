@@ -24,6 +24,6 @@ Other
 | ----------------------------------------------------------| ----------------------------------------------------------------------------------------------------------|
 | [py_in_exe.py](Other/py_in_exe.py)                        | конвертация из .py в .exe                                                                                 |
 | [ui_in_py.py](Other/ui_in_py.py)                          | конвертация из .ui в .py                                                                                  |
-| [req.py](Other/req.py)                                    | конвертация из .ui в .py                                                                                  |
+| [req.py](Other/req.py)                                    | Выгрузка в requirements.txt                                                                               |
 | [txt_in_xlsx.py](Other/txt_in_xlsx.py)                    | конвертация из .txt в .xlsx                                                                               |
 | [link_extractor.py](Other/link_extractor.py)              | проверка url                                                                                              |
